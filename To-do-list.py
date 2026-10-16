@@ -27,7 +27,6 @@ class TodoApp:
         self._create_widgets()
         self.refresh_table()
 
-    # ---------------- Persistent Data Handling ----------------
     def load_tasks(self):
         if not os.path.exists(DATA_FILE):
             return []
@@ -46,7 +45,6 @@ class TodoApp:
                 "Save Error", f"Unable to save task file: {err}"
             )
 
-    # ---------------- UI Construction ----------------
     def _create_widgets(self):
         # Header
         header_frame = tk.Frame(self.root, bg="#1e293b", height=50)
@@ -188,7 +186,6 @@ class TodoApp:
         )
         status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
-    # ---------------- Application Operations ----------------
     def refresh_table(self):
         for item in self.tree.get_children():
             self.tree.delete(item)
