@@ -46,7 +46,6 @@ class TodoApp:
             )
 
     def _create_widgets(self):
-        # Header
         header_frame = tk.Frame(self.root, bg="#1e293b", height=50)
         header_frame.pack(fill=tk.X)
         header_label = tk.Label(
@@ -59,7 +58,6 @@ class TodoApp:
         )
         header_label.pack()
 
-        # Input controls
         input_frame = tk.Frame(self.root, pady=12, padx=16)
         input_frame.pack(fill=tk.X)
 
@@ -83,7 +81,6 @@ class TodoApp:
         )
         add_btn.pack(side=tk.RIGHT)
 
-        # Table view for tasks
         table_frame = tk.Frame(self.root, padx=16)
         table_frame.pack(fill=tk.BOTH, expand=True)
 
@@ -110,7 +107,6 @@ class TodoApp:
         self.tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-        # Action control bar
         btn_frame = tk.Frame(self.root, pady=14, padx=16)
         btn_frame.pack(fill=tk.X)
 
@@ -170,7 +166,6 @@ class TodoApp:
         )
         clear_btn.pack(side=tk.RIGHT)
 
-        # Status summary footer
         self.status_var = tk.StringVar()
         status_bar = tk.Label(
             self.root,
