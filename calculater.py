@@ -11,13 +11,11 @@ class Calculator:
         self.root.resizable(False, False)
         self.root.configure(bg="#222f3e")
 
-        # Current calculation expression
         self.expression = ""
 
         self.setup_ui()
 
     def setup_ui(self):
-        # Display screen
         self.display_var = tk.StringVar(value="0")
 
         display_frame = tk.Frame(self.root, bg="#222f3e", padx=12, pady=16)
@@ -37,11 +35,9 @@ class Calculator:
         )
         self.display_screen.pack(fill=tk.X)
 
-        # Keypad container
         buttons_frame = tk.Frame(self.root, bg="#222f3e", padx=10, pady=5)
         buttons_frame.pack(fill=tk.BOTH, expand=True)
 
-        # Button layout definition: (label, row, col, colspan, bg_color)
         btn_layout = [
             ("C", 0, 0, 3, "#ee5253"),
             ("/", 0, 3, 1, "#ff9f43"),
@@ -62,13 +58,11 @@ class Calculator:
             ("=", 4, 3, 1, "#10ac84"),
         ]
 
-        # Configure equal spacing for grid
         for i in range(4):
             buttons_frame.columnconfigure(i, weight=1)
         for i in range(5):
             buttons_frame.rowconfigure(i, weight=1)
 
-        # Create all keypad buttons
         for label, r, c, span, color in btn_layout:
             action = lambda x=label: self.on_button_click(x)
             btn = tk.Button(
@@ -113,7 +107,6 @@ class Calculator:
             self.display_var.set(self.expression)
             return
 
-        # Check if the current active number already contains a dot
         parts = []
         current = ""
         for ch in self.expression:
@@ -139,7 +132,6 @@ class Calculator:
                 self.display_var.set(self.expression)
             return
 
-        # If user clicks another operator back-to-back, update to the latest operator
         if self.expression[-1] in "+-*/":
             self.expression = self.expression[:-1] + op
         else:
@@ -151,21 +143,17 @@ class Calculator:
         if not self.expression or self.display_var.get() == "Error":
             return
 
-        # Do nothing if the expression ends with an incomplete operator
         if self.expression[-1] in "+-*/":
             return
 
         try:
-            # Check for division by zero manually
             if "/0" in self.expression:
-                # Handle cases like /0 or /0.0
+               
                 tokens = self.expression.replace("+", " ").replace("-", " ").replace("*", " ").split()
-                # Check directly in evaluation
                 pass
 
             result = eval(self.expression)
 
-            # Round precision and eliminate trailing zeroes if integer
             if isinstance(result, float) and result.is_integer():
                 result = int(result)
             elif isinstance(result, float):
