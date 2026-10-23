@@ -18,7 +18,6 @@ class ContactBook:
         self.contacts = self.load_contacts()
         self.current_selected_index = None
 
-        # Build interface
         self.setup_ui()
         self.display_contacts(self.contacts)
 
@@ -36,7 +35,6 @@ class ContactBook:
             json.dump(self.contacts, f, indent=4)
 
     def setup_ui(self):
-        # Title
         title_label = tk.Label(
             self.root,
             text="Contact Management System",
@@ -50,7 +48,6 @@ class ContactBook:
         main_frame = tk.Frame(self.root, padx=15, pady=15)
         main_frame.pack(fill=tk.BOTH, expand=True)
 
-        # Left Side - List & Search
         left_frame = tk.Frame(main_frame)
         left_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 10))
 
@@ -66,7 +63,6 @@ class ContactBook:
         )
         self.search_entry.bind("<KeyRelease>", self.search_contact)
 
-        # Treeview to display contacts
         self.tree = ttk.Treeview(
             left_frame,
             columns=("Name", "Phone"),
@@ -88,7 +84,6 @@ class ContactBook:
 
         self.tree.bind("<<TreeviewSelect>>", self.select_contact)
 
-        # Right Side - Form Fields
         right_frame = tk.LabelFrame(
             main_frame, text=" Contact Details ", font=("Arial", 10, "bold"), padx=10, pady=10
         )
@@ -110,7 +105,6 @@ class ContactBook:
         self.address_entry = tk.Text(right_frame, width=32, height=4, font=("Arial", 9))
         self.address_entry.pack(fill=tk.X, pady=(0, 12))
 
-        # Action Buttons
         btn_frame = tk.Frame(right_frame)
         btn_frame.pack(fill=tk.X)
 
@@ -165,7 +159,6 @@ class ContactBook:
             return
 
         idx = int(selected[0])
-        # Find the correct contact even if filtered
         contact_name = self.tree.item(selected[0], "values")[0]
         contact_phone = self.tree.item(selected[0], "values")[1]
 
