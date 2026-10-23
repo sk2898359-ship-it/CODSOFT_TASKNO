@@ -22,7 +22,6 @@ class ContactBook:
         self.setup_ui()
         self.display_contacts(self.contacts)
 
-    # ---------------- File Handling ----------------
     def load_contacts(self):
         if not os.path.exists(FILE_NAME):
             return []
@@ -36,7 +35,6 @@ class ContactBook:
         with open(FILE_NAME, "w") as f:
             json.dump(self.contacts, f, indent=4)
 
-    # ---------------- UI Setup ----------------
     def setup_ui(self):
         # Title
         title_label = tk.Label(
@@ -149,7 +147,6 @@ class ContactBook:
             command=self.clear_fields,
         ).grid(row=1, column=1, padx=2, pady=3)
 
-    # ---------------- Application Functions ----------------
     def display_contacts(self, contact_list):
         for item in self.tree.get_children():
             self.tree.delete(item)
