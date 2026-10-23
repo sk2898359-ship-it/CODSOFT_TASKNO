@@ -22,7 +22,6 @@ class RockPaperScissorsApp:
         self.setup_ui()
 
     def setup_ui(self):
-        # Header banner
         header = tk.Label(
             self.root,
             text="Rock Paper Scissors",
@@ -33,7 +32,6 @@ class RockPaperScissorsApp:
         )
         header.pack(fill=tk.X)
 
-        # Instructions
         instruction_label = tk.Label(
             self.root,
             text="Choose Rock, Paper, or Scissors to play against the computer:",
@@ -44,7 +42,6 @@ class RockPaperScissorsApp:
         )
         instruction_label.pack()
 
-        # Selection Buttons
         btn_frame = tk.Frame(self.root, bg="#f1f5f9", pady=10)
         btn_frame.pack()
 
@@ -87,7 +84,6 @@ class RockPaperScissorsApp:
             command=lambda: self.play_round("Scissors"),
         ).grid(row=0, column=2, padx=8)
 
-        # Round Results Display
         display_frame = tk.LabelFrame(
             self.root,
             text=" Round Results ",
@@ -126,7 +122,6 @@ class RockPaperScissorsApp:
         )
         self.outcome_label.pack()
 
-        # Scoreboard
         score_frame = tk.LabelFrame(
             self.root,
             text=" Scoreboard ",
@@ -178,13 +173,11 @@ class RockPaperScissorsApp:
         # Generate computer selection
         computer_choice = random.choice(CHOICES)
 
-        # Update selections text
         self.user_choice_label.config(text=f"Your Choice: {user_choice}")
         self.comp_choice_label.config(
             text=f"Computer's Choice: {computer_choice}"
         )
 
-        # Determine winner
         if user_choice == computer_choice:
             self.ties += 1
             self.outcome_label.config(
@@ -205,7 +198,6 @@ class RockPaperScissorsApp:
                 text="Computer Wins!", fg="#dc2626"
             )
 
-        # Refresh score display
         self.update_score_label()
 
     def update_score_label(self):
