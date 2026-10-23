@@ -83,7 +83,6 @@ class Calculator:
             )
             btn.grid(row=r, column=c, columnspan=span, sticky="nsew", padx=3, pady=3)
 
-    # ---------------- Calculator Logic ----------------
     def on_button_click(self, char):
         if char == "C":
             self.clear()
